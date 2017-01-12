@@ -105,7 +105,7 @@ const command = {
   get: (cfg, name, primary = false) => {
     if (!cfg.from) throw new Error('Missing \'from\' property in config or argument')
     const cwd = process.cwd()
-    let args = primary ? [ 'run', '--rm', '-it', '-v', `${cwd}:${cwd}`, '-w', cwd, '--privileged' ] : [ 'run', '-d', '--privileged' ]
+    let args = primary ? [ 'run', '--rm', '-it', '-v', `${cwd}:/app`, '-w', '/app', '--privileged' ] : [ 'run', '-d', '--privileged' ]
     args = args.concat(_.flatten([
       command.getArgs(cfg),
       command.getLinks(cfg),
